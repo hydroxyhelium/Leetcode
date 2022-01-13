@@ -11,10 +11,10 @@ class Solution(object):
         :rtype: Optional[ListNode]
         """
         
-        if(list1==None):
+        if(list1 is None):
             return list2
         
-        elif(list2==None):
+        elif(list2 is None):
             return list1
         
         else:
