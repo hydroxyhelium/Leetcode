@@ -15,6 +15,8 @@ class Solution(object):
         # recursive solution 
         arr[0]=1
         
+        global_max = 1 
+        
         for i in range(1,len(nums)):
             j = (len(nums)-1-i)
             max_seq = 1 
@@ -23,10 +25,10 @@ class Solution(object):
                 if(nums[len(nums)-1-k]>nums[len(nums)-1-i]):
                     max_seq = max(max_seq,arr[k]+1)
             arr[i]=max_seq
-            
-     
-            
-        return max(arr)
+            global_max = max(global_max,arr[i])
+        
+        
+        return global_max
             
             
         
