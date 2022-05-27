@@ -36,7 +36,7 @@ class Solution(object):
             else:
                 arr[i]=min_coin
                     
-        print(arr)
+        
         return arr[amount]
             
                
