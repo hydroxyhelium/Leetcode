@@ -1,7 +1,5 @@
 class Solution(object):
     
-   
-    
     def isValidSudoku(self, board):
         
         def help_sub(mini):
@@ -54,6 +52,4 @@ class Solution(object):
                     return False
                 
         return True 
-                
-        
-        
+    
