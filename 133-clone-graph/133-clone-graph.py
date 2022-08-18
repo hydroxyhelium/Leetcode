@@ -1,49 +1,56 @@
 """
 # Definition for a Node.
-class Node(object):
+class Node:
     def __init__(self, val = 0, neighbors = None):
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 """
 
-class Solution(object):   
-    
-    def cloneGraph(self, node,hashset=None,hashmap=None):
-        """
-        :type node: Node
-        :rtype: Node
-        """
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
         
-        if(hashmap is None):
-            hashmap={}
+        if(not node):
+            return None 
+        
+        hashmap = {}
+        
+        # stores [val:node]
+        hashmap[node.val]=Node(node.val, None)
+        
+        tobe = []
+        
+        for j in node.neighbors:
+            copy = Node(j.val,None)
+            hashmap[node.val].neighbors.append(copy)
+            hashmap[j.val]=copy
+            tobe.append(j)
+           
+        
+        #pre-condition, any node has been created
+        while(tobe):
+            n1 = tobe[0]
             
-        if(hashset is None):
-            hashset=set()
-            
-        if(node is None):
-            return
-        
-        # we create temp Node in hashmap
-        
-        if(node.val in hashset):
-            return hashmap[node.val]
-        
-        else:
-            new_node = Node(node.val)
-            hashset.add(node.val)
-            hashmap[node.val]=new_node
-            
-            for i in node.neighbors:
-                   hashmap[node.val].neighbors.append(self.cloneGraph(i,hashset,hashmap))
+            for j in n1.neighbors:
                 
-            return hashmap[node.val]
-            
-        
-                
-            
+                if(j.val in hashmap.keys()):
+                    hashmap[n1.val].neighbors.append(hashmap[j.val])
                     
+                else:
+                    copy = Node(j.val,None)
+                    hashmap[j.val]=copy
+                    tobe.append(j)
+                    hashmap[n1.val].neighbors.append(hashmap[j.val])
+            
+            tobe.pop(0)
         
-    
+        return hashmap[node.val]
+                    
+            
+            
+            
+        
+
         
         
-        
+                    
+                
